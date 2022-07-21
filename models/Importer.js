@@ -1,4 +1,6 @@
 import  mongoose from "mongoose"
+import pkg from 'mongoose';
+const { Schema } = pkg;
 
 const ImporterSchema = mongoose.Schema({
     social_reason:{     

@@ -1,4 +1,6 @@
 import  mongoose from "mongoose"
+import pkg from 'mongoose';
+const { Schema } = pkg;
 
 const TransporterConsultationSchema = mongoose.Schema({
     date:{     
@@ -6,7 +8,7 @@ const TransporterConsultationSchema = mongoose.Schema({
         required: true
     },
     price:{
-        type : Double,
+        type : String,
         required : false
     },
     description:{

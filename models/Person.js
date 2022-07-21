@@ -1,4 +1,6 @@
 import  mongoose from "mongoose"
+import pkg from 'mongoose';
+const { Schema } = pkg;
 
 const PersonSchema = mongoose.Schema({
     postal_code:{
@@ -34,8 +36,8 @@ const PersonSchema = mongoose.Schema({
         required : false
     },
     date_created:{
-        type : Date.now,
-        require : false
+        type : Date,
+        default: Date.now
     },
     date_modifyed: {
         type : Date

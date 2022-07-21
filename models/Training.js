@@ -1,4 +1,6 @@
 import  mongoose from "mongoose"
+import pkg from 'mongoose';
+const { Schema } = pkg;
 
 const TrainingSchema = mongoose.Schema({
     title:{     
@@ -18,7 +20,8 @@ const TrainingSchema = mongoose.Schema({
         required: false
     },
     published:{
-        type: Date.now,
+        type : Date,
+        default: Date.now
     },
     modifyed:{
         type: Date,
