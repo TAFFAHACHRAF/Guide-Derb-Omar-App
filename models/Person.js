@@ -27,10 +27,6 @@ const PersonSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    adresse:{     
-        type: String,
-        required: false
-    },
     city:{
         type : String,
         required : false

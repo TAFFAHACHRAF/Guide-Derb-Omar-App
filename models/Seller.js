@@ -33,7 +33,8 @@ const SellerSchema = mongoose.Schema({
     },
     Person : {
         type : Schema.Types.ObjectId,
-        ref : 'Person'
+        ref : 'Person',
+        required : true
     },
     Administrator : {
         type : Schema.Types.ObjectId,

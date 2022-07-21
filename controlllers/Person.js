@@ -53,7 +53,6 @@ export const updatePerson = async (req,res) => {
                     adresse:req.body.adresse,
                     age:req.body.age,
                     email:req.body.email,
-                    adresse:req.body.adresse,
                     city:req.body.city,
                     date_created:req.body.date_created,
                     date_modifyed:req.body.date_modifyed
