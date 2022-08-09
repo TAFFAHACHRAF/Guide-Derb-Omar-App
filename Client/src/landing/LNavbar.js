@@ -39,7 +39,7 @@ function Navbar(){
                 </div>
               </li>
               <li className="nav-item">
-                <LinkRouterDom className="nav-link btn" to="register">Se connecter
+                <LinkRouterDom className="nav-link btn" to="/login">Se connecter
                 </LinkRouterDom>
               </li>
             </ul>

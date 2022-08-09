@@ -14,7 +14,7 @@ function Header(){
                         <label className="sr-only" for="email4">Email</label>
                         <input type="text" className="form-control form-control-lg flex-grow-1 mr-2" id="email4" placeholder="Your email address..." />
                         </div>
-                        <Link  to="register"><button type="submit" className="btn btn-primary  btn-lg mt-0 mt-md-3 mt-lg-0">Subscribe</button></Link>
+                        <Link  to="/login"><button type="submit" className="btn btn-primary  btn-lg mt-0 mt-md-3 mt-lg-0">Subscribe</button></Link>
                     </form>
                     </div>
                     <div className="col-12 col-md-6">
