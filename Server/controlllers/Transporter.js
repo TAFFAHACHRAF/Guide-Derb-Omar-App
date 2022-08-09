@@ -1,5 +1,10 @@
 import Transporter from '../models/Transporter.js'
- 
+import jwt from "jsonwebtoken"
+import { token } from 'morgan';
+
+
+
+
 export const getTransporters = async (req,res)=>{
     try{
         const transporters = await Transporter.find();
@@ -24,10 +29,52 @@ export const createTransporter = async (req,res) => {
     try{
         const saved=await newTransporter.save()
         res.send(saved)
+        console.log(saved)
     }catch(err){
         console.log("error")
         res.status(409).json({message : err.message})
     }
+}
+
+export const signin = async (req,res) => {
+    const {email,password} = req.body
+
+    Transporter.findOne({email}, (err, transporter) => {
+        if(err || !transporter){
+            return res.status(400).json({
+                error : "Email was not found"
+            })
+        }
+
+        // Authentificate
+        if(!transporter.authentificate(password)){
+            return res.status(400).json({
+                error : "Email and password dot not match"
+            })
+        }
+
+        // create token
+        const accessToken = jwt.sign({_id: transporter._id}, 'eifuefh845612@')
+
+        // put token in cookie
+        res.cookie('token',token,{expire: new Date() + 1})
+
+        //send response
+        const {_id, name, email} = transporter
+        return res.json({
+            accessToken,
+            transporter: {
+                _id,
+                name,
+                email
+            }
+        })
+    })
+}
+
+export const signout = async (req,res) => {
+    // Clearing the cookie
+    // res.clearCookie('accessToken');
 }
 
 export const deleteTransporter = async (req,res) => {

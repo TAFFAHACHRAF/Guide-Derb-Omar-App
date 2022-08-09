@@ -1,0 +1,31 @@
+GET http://localhost:3000/visitors
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQWNocmFmIiwiaWF0IjoxNjU5ODIzNTUxfQ.w13_TCsUoEQewcK_iHmIa_mTP38sGUjiUwbBOpqFtaY
+
+
+###
+
+
+POST http://localhost:3000/transporters/
+Content-Type: application/json
+
+{
+    "email" : "ppp@gmail.com",
+    "password" : "well"
+}
+
+###
+
+
+POST http://localhost:3000/transporters/signin
+Content-Type: application/json
+
+{
+    "email" : "ppp@gmail.com",
+    "password" : "well"
+}
+
+###
+
+GET http://localhost:3000/transporters/signout
+
+
