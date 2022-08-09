@@ -3,8 +3,6 @@ import jwt from "jsonwebtoken"
 import { token } from 'morgan';
 
 
-
-
 export const getTransporters = async (req,res)=>{
     try{
         const transporters = await Transporter.find();
@@ -29,7 +27,6 @@ export const createTransporter = async (req,res) => {
     try{
         const saved=await newTransporter.save()
         res.send(saved)
-        console.log(saved)
     }catch(err){
         console.log("error")
         res.status(409).json({message : err.message})
@@ -70,11 +67,6 @@ export const signin = async (req,res) => {
             }
         })
     })
-}
-
-export const signout = async (req,res) => {
-    // Clearing the cookie
-    // res.clearCookie('accessToken');
 }
 
 export const deleteTransporter = async (req,res) => {

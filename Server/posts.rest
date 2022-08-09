@@ -9,8 +9,8 @@ POST http://localhost:3000/transporters/
 Content-Type: application/json
 
 {
-    "email" : "ppp@gmail.com",
-    "password" : "well"
+    "email" : "888888@gmail.com",
+    "password" : "0000"
 }
 
 ###
