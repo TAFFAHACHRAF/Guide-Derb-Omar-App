@@ -1,8 +1,15 @@
-#!/bin/bash
 
-#File: tree-md
+# Projet Stage - TAFFAH Achraf
 
-tree=$(tree -tf --noreport -I '*~' --charset ascii $1 |
-       sed -e 's/| \+/  /g' -e 's/[|`]-\+/ */g' -e 's:\(* \)\(\(.*/\)\([^/]\+\)\):\1[\4](\2):g')
+Clone the project
 
-printf "# Project tree\n\n${tree}"
+```bash
+  git https://github.com/TAFFAHACHRAF/Guide-Derb-Omar-App/
+```
+
+## Tech Stack
+
+**Client:** React js , HTML , CSS , Bootstrap
+
+**Server:** NodeJS, ExpressJS, Mongodb, JWT
+
