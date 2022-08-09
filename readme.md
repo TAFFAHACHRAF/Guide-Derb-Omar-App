@@ -7,7 +7,7 @@ Clone the project
   git https://github.com/TAFFAHACHRAF/Guide-Derb-Omar-App/
 ```
 
-## Tech Stack
+## MERN Stack
 
 **Client:** React js , HTML , CSS , Bootstrap
 
