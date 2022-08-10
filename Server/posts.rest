@@ -4,19 +4,18 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQWNocmFmI
 
 ###
 
-
-POST http://localhost:3000/transporters/
+POST http://localhost:3000/UserPersons/
 Content-Type: application/json
 
 {
-    "email" : "888888@gmail.com",
-    "password" : "0000"
+    "email" : "ppp@gmail.com",
+    "password" : "well"
 }
 
 ###
 
 
-POST http://localhost:3000/transporters/signin
+POST http://localhost:3000/UserPersons/signin
 Content-Type: application/json
 
 {
