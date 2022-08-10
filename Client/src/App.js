@@ -10,12 +10,14 @@ import Services from "./landing/LServices.js";
 import Subscribe from "./landing/Lsubscipe.js";
 import Contact from "./landing/LContact.js";
 import User from "./Dachbord/User.js";
+import Signup from "./Autehtification/Signup.js";
+import Rnavbar from "./Autehtification/Rnavbar.js";
 
 function App() {
   return ( 
       <BrowserRouter>
           <Routes>
-            <Route path="/" element={
+            <Route path="/" exact element={
               <div>
                 <Navbar />
                 <Header />
@@ -23,13 +25,13 @@ function App() {
                 <Services />
                 <Contact />
                 <Subscribe />
-                <Footer />
               </div>
             }/>
-            <Route path="/dashbord" element={<div><User /></div>}/>
-            <Route path="/login" element={<Login />}/>
-            <Route path="/signup" element={<ignup />}/>
+            <Route path="/dashbord" exact element={<User />}/>
+            <Route path="/signup" exact element={<Signup />}/>
+            <Route path="/login" exact element={<div><Rnavbar /><Login /></div>}/>
           </Routes>
+          <Footer />
       </BrowserRouter>
   );
 }

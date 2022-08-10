@@ -1,13 +1,9 @@
 
 import React,{ useEffect , useState ,createContext } from "react"
 import axios from 'axios'
-import UserContext from "./UserContext";
 import { useCookies } from 'react-cookie';
 
-
-
 function Login(){
-    // const history = useHistory()
     const [email,setEmail] = useState('');
     const [password,setPassword] = useState('');
     const [loginError,setLoginError] = useState(false);
@@ -17,15 +13,16 @@ function Login(){
         e.preventDefault();
         
         const user = {email,password};
-        var session_url = 'http://localhost:3000/transporters/signin';
+        var session_url = 'http://localhost:3000/UserPersons/signin';
         axios.post(session_url, user)
         .then(function(response) {
+            setLoginError('Succes')
             setCookie('accessToken', response.data.accessToken);
-            setCookie('id_transporter', response.data.transporter._id);
-            setCookie('email_transporter', response.data.transporter.email);
+            setCookie('id_transporter', response.data.UserPerson._id);
+            setCookie('email_transporter', response.data.UserPerson.email);
             window.location.href='/dashbord'
         }).catch(function(error) {
-            setLoginError('error')
+            setLoginError('Username and password are not correcte')
         });
     }
       
@@ -42,21 +39,19 @@ function Login(){
                         <form onSubmit={e => loginUser(e)}>
                             <div className="form-group">
                                 <div>
-                                {loginError && (
-                                        <div>LOGIN ERROR! WRONG EMAIL OR PASSWORD!</div>
-                                    )}
                                 </div>
-                                <label for="exampleInputEmail1">Email address</label>
+                                <label htmlFor="exampleInputEmail1">Email address</label>
                                 <input value={email} onChange={(e) => setEmail(e.target.value)} type="email"  className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
-                                <small id="emailHelp" className="form-text text-info">We'll never share your email with anyone else.</small>
+                                <small id="emailHelp" className="form-text text-info">{loginError}</small>
                             </div>
                             <div className="form-group">
-                                <label for="exampleInputPassword1">Password</label>
+                                <label htmlFor="exampleInputPassword1">Password</label>
                                 <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" />
+                                <small id="emailHelp" className="form-text text-info">{loginError}</small>
                             </div>
                             <div className="custom-control custom-checkbox my-4">
                                 <input type="checkbox" className="custom-control-input" id="customCheck2" />
-                                <label className="custom-control-label" for="customCheck2">Remember me</label>
+                                <label className="custom-control-label" htmlFor="customCheck2">Remember me</label>
                             </div>
                             <button type="submit" className="btn btn-block btn-primary">Log In</button>
                             </form>

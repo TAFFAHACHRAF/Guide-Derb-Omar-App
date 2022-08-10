@@ -2,6 +2,7 @@ import React from 'react';
 import { Link as Link} from "react-scroll";
 import { Link as LinkRouterDom} from 'react-router-dom';
 
+
 function Navbar(){
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary mb-4" id="home">
@@ -14,23 +15,30 @@ function Navbar(){
           <div className="collapse navbar-collapse text-center" id="navbarNavDropdown-1">
             <ul className="navbar-nav ml-auto">
               <li className="nav-item active">
-                <Link className="nav-link btn" to="home" smooth={true} duration={1000}>Accueil
-                  <span className="sr-only">(current)</span>
+                  <Link className="nav-link" to="home" smooth={true} duration={1000}>
+                    <button className='btn text-white'>Accueil</button>
+                    <span className="sr-only">(current)</span>
+                  </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="about" smooth={true} duration={1000}>
+                  <button className='btn text-white'>À propos</button>
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link btn" to="about" smooth={true} duration={1000}>À propos</Link>
+                <Link className="nav-link" to="services" smooth={true} duration={1000}>
+                  <button className='btn text-white'>Services</button>
+                </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link btn" to="services" smooth={true} duration={1000}>Services</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link btn" to="contact" smooth={true} duration={1000}>Contactez-nous</Link>
+                <Link className="nav-link" to="contact" smooth={true} duration={1000}>
+                  <button className='btn text-white'>Contactez-nous</button>
+                </Link>
               </li>
               <li className="nav-item dropdown">
-                <a className="nav-link dropdown-toggle btn" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                <a className="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
                   aria-haspopup="true" aria-expanded="false">
-                  Langues
+                  <div className='btn text-white'>Langues</div>
                 </a>
                 <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                   <LinkRouterDom to="/ar" className="dropdown-item btn">العربية</LinkRouterDom>
@@ -39,7 +47,8 @@ function Navbar(){
                 </div>
               </li>
               <li className="nav-item">
-                <LinkRouterDom className="nav-link btn" to="/login">Se connecter
+                <LinkRouterDom className="nav-link btn" to="/login">
+                  <button className='btn text-white'>Se connecter</button>
                 </LinkRouterDom>
               </li>
             </ul>

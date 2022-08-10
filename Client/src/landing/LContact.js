@@ -14,15 +14,15 @@ function Contact(){
                                 <div className="card-body p-5">
                                     <form>
                                         <div className="form-group">
-                                        <label for="email1">Votre nom</label>
+                                        <label htmlFor="email1">Votre nom</label>
                                         <input type="email" className="form-control form-control-lg" id="email1" aria-describedby="emailHelp" placeholder="Entrez le nom" />
                                         </div>
                                         <div className="form-group">
-                                        <label for="email1">Votre adresse e-mail</label>
+                                        <label htmlFor="email1">Votre adresse e-mail</label>
                                         <input type="email" className="form-control form-control-lg" id="email1" aria-describedby="emailHelp" placeholder="Entrez l'e-mail" />
                                         </div>
                                         <div className="form-group">
-                                        <label for="email1">Votre message</label>
+                                        <label htmlFor="email1">Votre message</label>
                                         <textarea className="form-control" rows="5"></textarea>
                                         </div>
                                         <div className="text-center mt-5">
