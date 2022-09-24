@@ -4,30 +4,38 @@ const { Schema } = pkg;
 import crypto from 'crypto'
 import {v1 as uuidv1} from 'uuid';
 
-const TransporterSchema = mongoose.Schema({
+const TransporterSchema = mongoose.Schema({       
     social_reason:{     
         type: String,
-        required: false
+        required: true
     },
     nationality : {
         type : String,
-        required : false
+        required : true
     },
     speciality : {
         type : String,
-        required : false
+        required : true
     },
     trade_register:{
         type: String,
-        required: false
-    },
-    company_logo:{
-        type: String,
-        required: false
+        required: true
     },
     juridical_statute:{
         type: String,
-        required: false
+        required: true
+    },
+    fax_number:{
+        type: String,
+        required: true
+    },
+    phone_number:{
+        type: String,
+        required: true
+    },
+    adresse:{
+        type: String,
+        required: true
     },
     email : {
         type : String,
@@ -36,17 +44,17 @@ const TransporterSchema = mongoose.Schema({
     encry_password : {
         type : String,
         trim : true,
-        required : true
+        required : false
+    },
+    hasLogo:{
+        type : String,
+        default: 'false'
+    },
+    verified : {
+        type : String,
+        default : 'false'
     },
     salt : String
-    // Person : {
-    //     type : Schema.Types.ObjectId,
-    //     ref : 'Person'
-    // },
-    // Administrator : {
-    //     type : Schema.Types.ObjectId,
-    //     ref : 'Administrator'
-    // }
 },{timestamps: true});
 
 TransporterSchema.virtual("password")

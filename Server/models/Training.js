@@ -23,13 +23,13 @@ const TrainingSchema = mongoose.Schema({
         type : Date,
         default: Date.now
     },
+    hasVideo:{
+        type : String,
+        default: 'false'
+    },
     modifyed:{
         type: Date,
         require: false
-    },
-    Administrator : {
-        type : Schema.Types.ObjectId,
-        ref : 'Administrator'
     }
 });
 const Training = mongoose.model('Training',TrainingSchema);

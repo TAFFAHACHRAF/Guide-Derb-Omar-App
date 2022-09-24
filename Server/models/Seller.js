@@ -1,6 +1,8 @@
 import  mongoose from "mongoose"
 import pkg from 'mongoose';
 const { Schema } = pkg;
+import crypto from 'crypto'
+import {v1 as uuidv1} from 'uuid';
 
 const SellerSchema = mongoose.Schema({
     social_reason:{     
@@ -9,37 +11,76 @@ const SellerSchema = mongoose.Schema({
     },
     nationality : {
         type : String,
-        required : false
+        required : true
     },
     speciality : {
         type : String,
-        required : false
+        required : true
     },
     trade_register:{
         type: String,
-        required: false
+        required: true
     },
-    company_logo:{
-        type: String,
-        required: false
+    hasLogo:{
+        type : String,
+        default: 'false'
     },
     juridical_statute:{
         type: String,
+        required: true
+    },
+    fax_number:{
+        type: String,
         required: false
     },
-    password : {
+    phone_number:{
+        type: String,
+        required: false
+    },
+    adresse:{
+        type: String,
+        required: true
+    },
+    email : {
         type : String,
         required : true
     },
-    Person : {
-        type : Schema.Types.ObjectId,
-        ref : 'Person',
+    encry_password : {
+        type : String,
+        trim : true,
         required : true
     },
-    Administrator : {
-        type : Schema.Types.ObjectId,
-        ref : 'Administrator'
+    verified : {
+        type : String,
+        default : 'false'
+    },
+    salt : String
+},{timestamps: true});
+
+SellerSchema.virtual("password")
+    .set(function(password) {
+        this._password = password
+        this.salt = uuidv1()
+        this.encry_password = this.securePassword(password)
+    })
+    .get(function() {
+        return this._password
+})
+
+SellerSchema.methods = {
+    authentificate : function(plainpassword){
+        return this.securePassword(plainpassword) === this.encry_password
+    },
+    securePassword: function(plainpassword){
+        if(!plainpassword) return ""
+
+        try{
+            return crypto.createHmac("sha256", this.salt).update(plainpassword).digest("hex")
+        } catch(err){
+            return ""
+        }
     }
-});
+}
+
 const Seller = mongoose.model('Seller',SellerSchema);
 export default Seller

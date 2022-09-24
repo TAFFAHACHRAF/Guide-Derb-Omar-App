@@ -3,31 +3,30 @@ import pkg from 'mongoose';
 const { Schema } = pkg;
 
 const ImporterConsultationSchema = mongoose.Schema({
-    date:{     
-        type: Date,
+    follower: { type: Schema.Types.ObjectId, refPath: 'model_type'},
+    model_type: {  type: String, enum: 'Transporter,Importer,Seller,Guide', required: false ,unique: true},
+    guide:{     
+        type : Schema.Types.ObjectId,
+        ref : 'Importer',
         required: true
     },
-    price:{
+    type:{
         type : String,
-        required : false
+        required : true
     },
+    title:{
+        type : String,
+        required : true
+    },                                                                                                                                                                                  
     description:{
         type : String,
-        required : false
+        required : true
     },
-    Importer:{
-        type : Schema.Types.ObjectId,
-        ref : 'Importer'
+    date:{
+        type : Date,
+        required : true
     },
-    seller:{
-        type : Schema.Types.ObjectId,
-        ref : 'Seller'
-    },
-    Administrator : {
-        type : Schema.Types.ObjectId,
-        ref : 'Administrator'
-    },
-    Validation : {
+    validation : {
         type : String,
         default : 'false'
     }

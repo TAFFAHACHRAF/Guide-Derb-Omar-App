@@ -3,31 +3,31 @@ import pkg from 'mongoose';
 const { Schema } = pkg;
 
 const GuideConsultationSchema = mongoose.Schema({
-    date:{     
-        type: Date,
-        required: true
-    },
-    price:{
+    follower:{     
         type : String,
-        required : false
+        required: true,
+        index:true, 
+        unique:true,
+        sparse:true
     },
+    guide:{     
+        type : String,
+        required: true,
+        unique : 'true'
+    },
+    title:{
+        type : String,
+        required : true
+    },                                                                                                                                                                                  
     description:{
         type : String,
-        required : false
+        required : true
     },
-    Guide:{
-        type : Schema.Types.ObjectId,
-        ref : 'Guide'
+    date:{
+        type : Date,
+        required : true
     },
-    seller:{
-        type : Schema.Types.ObjectId,
-        ref : 'Seller'
-    },
-    Administrator : {
-        type : Schema.Types.ObjectId,
-        ref : 'Administrator'
-    },
-    Validation : {
+    validation : {
         type : String,
         default : 'false'
     }

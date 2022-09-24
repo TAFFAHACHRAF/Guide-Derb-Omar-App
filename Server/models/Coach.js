@@ -1,31 +1,17 @@
 import  mongoose from "mongoose"
-import pkg from 'mongoose';
-const { Schema } = pkg;
 import crypto from 'crypto'
 import {v1 as uuidv1} from 'uuid';
 
-const ImporterSchema = mongoose.Schema({
-    social_reason:{     
-        type: String,
-        required: true
-    },
-    nationality : {
+const CoachSchema = mongoose.Schema({
+    first_name:{
         type : String,
-        required : true
+        required : false
     },
-    speciality : {
+    family_name:{
         type : String,
-        required : true
+        required : false
     },
-    trade_register:{
-        type: String,
-        required: true
-    },
-    hasLogo:{
-        type : String,
-        default: 'false'
-    },
-    juridical_statute:{
+    email:{     
         type: String,
         required: true
     },
@@ -41,9 +27,17 @@ const ImporterSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    email : {
+    nationality : {
         type : String,
         required : true
+    },
+    speciality : {
+        type : String,
+        required : true
+    },
+    hasLogo:{
+        type : String,
+        default: 'false'
     },
     encry_password : {
         type : String,
@@ -54,10 +48,19 @@ const ImporterSchema = mongoose.Schema({
         type : String,
         default : 'false'
     },
+    date_created:{
+        type : Date,
+        default: Date.now,
+        required : false
+    },
+    date_modifyed: {
+        type : Date,
+        required : false
+    },
     salt : String
-},{timestamps: true});
+});
 
-ImporterSchema.virtual("password")
+CoachSchema.virtual("password")
     .set(function(password) {
         this._password = password
         this.salt = uuidv1()
@@ -67,7 +70,7 @@ ImporterSchema.virtual("password")
         return this._password
 })
 
-ImporterSchema.methods = {
+CoachSchema.methods = {
     authentificate : function(plainpassword){
         return this.securePassword(plainpassword) === this.encry_password
     },
@@ -82,5 +85,6 @@ ImporterSchema.methods = {
     }
 }
 
-const Importer = mongoose.model('Importer',ImporterSchema);
-export default Importer
+
+const Coach = mongoose.model('Coach',CoachSchema);
+export default Coach
