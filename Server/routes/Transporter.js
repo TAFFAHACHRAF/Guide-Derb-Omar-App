@@ -1,12 +1,14 @@
 import express from "express";
-import {getTransporters,getTransporterById,signin,createTransporter,deleteTransporter,updateTransporter} from "../controlllers/Transporter.js";
+import {getTransporters,getTransporterById,createTransporter,deleteTransporter,getTransportersCount,updateTransporter, signin} from "../controlllers/Transporter.js";
 const router = express.Router() 
 
 router.get('/',getTransporters)
-router.get('/:transporterId',getTransporterById)
+router.get('/:TransporterId',getTransporterById)
+router.get('/count/count',getTransportersCount)
 router.post('/', createTransporter)
-router.post('/signin', signin)
-router.delete('/:transporterId', deleteTransporter)
-router.patch('/:transporterId',updateTransporter)
+router.delete('/:TransporterId', deleteTransporter)
+router.patch('/:TransporterId',updateTransporter)
+router.post('/signin',signin)
 
+  
 export default router   

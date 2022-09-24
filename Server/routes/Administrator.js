@@ -1,11 +1,12 @@
 import express from "express";
-import {getAdministrators,getAdministratorById,createAdministrator,deleteAdministrator,updateAdministrator} from "../controlllers/administrator.js";
+import {getAdministrators,getAdministratorById,createAdministrator,deleteAdministrator,updateAdministrator, signin} from "../controlllers/Administrator.js";
 const router = express.Router() 
 
 router.get('/',getAdministrators)
-router.get('/:administratorId',getAdministratorById)
+router.get('/:AdministratorId',getAdministratorById)
 router.post('/', createAdministrator)
-router.delete('/:administratorId', deleteAdministrator)
-router.patch('/:administratorId',updateAdministrator)
+router.delete('/:AdministratorId', deleteAdministrator)
+router.patch('/:AdministratorId',updateAdministrator)
+router.post('/signin',signin)
 
 export default router   
