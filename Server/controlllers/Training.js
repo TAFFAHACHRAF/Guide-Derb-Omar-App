@@ -14,7 +14,16 @@ export const getTrainingById = async (req,res)=>{
         const training = await Training.findById(req.params.trainingId)
         res.json(training);
     }catch(err){
-        console.log(res.body)
+        res.status(400).json({message : err.message})
+    }
+}
+
+export const getTrainingsCount = async (req,res)=>{
+    try{
+        const trainings = await Training.countDocuments({})
+        res.json({trainings});
+    }catch(err){
+        res.json({message : err.message})
     }
 }
 
@@ -25,7 +34,6 @@ export const createTraining = async (req,res) => {
         const saved=await newTraining.save()
         res.send(saved)
     }catch(err){
-        console.log("error")
         res.status(409).json({message : err.message})
     }
 }
@@ -50,10 +58,7 @@ export const updateTraining = async (req,res) => {
                     title: req.body.title,
                     description:req.body.description,
                     miniature:req.body.miniature,
-                    video:req.body.video,
-                    published:req.body.published,
-                    modifyed:req.body.modifyed,
-                    Administrator : req.body.Administrator
+                    hasVideo:req.body.hasVideo
                 }  
             }
         );

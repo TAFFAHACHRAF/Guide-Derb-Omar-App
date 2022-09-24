@@ -14,7 +14,7 @@ export const getTransporterConsultationById = async (req,res)=>{
         const transporterConsultation = await TransporterConsultation.findById(req.params.transporterConsultationId)
         res.json(transporterConsultation);
     }catch(err){
-        console.log(res.body)
+        res.status(400).json({message : err.message})
     }
 }
 
@@ -25,7 +25,6 @@ export const createTransporterConsultation = async (req,res) => {
         const saved=await newTransporterConsultation.save()
         res.send(saved)
     }catch(err){
-        console.log("error")
         res.status(409).json({message : err.message})
     }
 }
@@ -47,18 +46,18 @@ export const updateTransporterConsultation = async (req,res) => {
             },
             { 
                 $set : { 
-                    date: req.body.date,
-                    price:req.body.price,
-                    description:req.body.description,
-                    Transporter: req.body.Transporter,
-                    seller: req.body.seller,
-                    Administrator : req.body.Administrator,
-                    Validation : req.body.Validation
+                    follower:req.body.follower,
+                    transporter:req.body.transporter,
+                    type : req.body.type,
+                    title : req.body.title,
+                    description : req.body.description,
+                    date : req.body.date,
+                    validation : req.body.validation
                 }  
             }
         );
         res.json(updateTransporterConsultation);
     } catch (err){
-        res.json({message : err})
+        res.status(400).json({message : err.message})
     }
 }

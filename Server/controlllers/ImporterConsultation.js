@@ -14,7 +14,7 @@ export const getImporterConsultationById = async (req,res)=>{
         const importerConsultation = await ImporterConsultation.findById(req.params.importerConsultationId)
         res.json(importerConsultation);
     }catch(err){
-        console.log(res.body)
+        res.status(400).json({message : err.message})
     }
 }
 
@@ -25,7 +25,6 @@ export const createImporterConsultation = async (req,res) => {
         const saved=await newImporterConsultation.save()
         res.send(saved)
     }catch(err){
-        console.log("error")
         res.status(409).json({message : err.message})
     }
 }
@@ -47,13 +46,13 @@ export const updateImporterConsultation = async (req,res) => {
             },
             { 
                 $set : { 
-                    date: req.body.date,
-                    price: req.body.price,
-                    description: req.body.description,
-                    Importer: req.body.Importer,
-                    seller: req.body.seller,
-                    Administrator : req.body.Administrator,
-                    Validation : req.body.Validation
+                    follower:req.body.follower,
+                    importer:req.body.importer,
+                    type : req.body.type,
+                    title : req.body.title,
+                    description : req.body.description,
+                    date : req.body.date,
+                    validation : req.body.validation,
                 }  
             }
         );

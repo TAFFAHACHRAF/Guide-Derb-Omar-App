@@ -1,45 +1,45 @@
-import Guide from '../models/Guide.js'
+import Coach from '../models/Coach.js'
 import jwt from "jsonwebtoken"
 import { token } from 'morgan';
  
 
-export const getGuides = async (req,res)=>{
+export const getCoachs = async (req,res)=>{
     try{
-        const guides = await Guide.find()
-        res.status(200).send(guides);
+        const coachs = await Coach.find()
+        res.status(200).send(coachs);
     }catch(err){
         res.status(400).json({message : err.message})
     }
 }
 
-export const getGuidesCount = async (req,res)=>{
+export const getCoachsCount = async (req,res)=>{
     try{
-        const guides = await Guide.countDocuments({})
-        res.json({guides});
+        const coachs = await Coach.countDocuments({})
+        res.json({coachs});
     }catch(err){
         res.json({message : err.message})
     }
 }
 
-export const getGuideById = async (req,res)=>{
+export const getCoachById = async (req,res)=>{
     try{
-        const guide = await Guide.findById(req.params.guideId)
-        res.json(guide);
+        const coach = await Coach.findById(req.params.coachId)
+        res.json(coach);
     }catch(err){
         res.status(400).json({message : err.message})
     }
 }
 
-export const createGuide = async (req,res) => {
-    const emailExists = await Guide.findOne({ email: req.body.email });
+export const createCoach = async (req,res) => {
+    const emailExists = await Coach.findOne({ email: req.body.email });
     if (emailExists) {
         return res.status(400).json({ error: 'Email already used' });
     }
 
-    const guide=req.body
-    const newGuide = new Guide(guide)
+    const coach=req.body
+    const newcoach = new Coach(coach)
     try{
-        const saved=await newGuide.save()
+        const saved=await newcoach.save()
         res.send({'_id' : saved._id})
     }catch(err){
         res.status(409).json({message : err.message})
@@ -49,31 +49,31 @@ export const createGuide = async (req,res) => {
 export const signin = async (req,res) => {
     const {email,password} = req.body
 
-    Guide.findOne({email}, (err, Guide) => {
-        if(err || !Guide){
+    coach.findOne({email}, (err, coach) => {
+        if(err || !coach){
             return res.status(400).json({
                 error : "Email was not found"
             })
         }
 
         // Authentificate
-        if(!Guide.authentificate(password)){
+        if(!coach.authentificate(password)){
             return res.status(400).json({
                 error : "Email and password dot not match"
             })
         }
 
         // create token
-        const accessToken = jwt.sign({_id: Guide._id}, 'eifuefh845612@')
+        const accessToken = jwt.sign({_id: coach._id}, 'eifuefh845612@')
 
         // put token in cookie
         res.cookie('token',token,{expire: new Date() + 1})
 
         //send response
-        const {_id, name, email} = Guide
+        const {_id, name, email} = coach
         return res.json({
             accessToken,
-            Guide: {
+            coach: {
                 _id,
                 name,
                 email
@@ -82,20 +82,20 @@ export const signin = async (req,res) => {
     })
 }
 
-export const deleteGuide = async (req,res) => {
+export const deleteCoach = async (req,res) => {
     try{
-        const removedGuide = await Guide.deleteOne({ _id : req.params.guideId})
-        res.json(removedGuide);
+        const removedcoach = await Coach.deleteOne({ _id : req.params.coachId})
+        res.json(removedcoach);
     } catch (err){
         res.json({message : err})
     }
 }
 
-export const updateGuide = async (req,res) => {
+export const updateCoach = async (req,res) => {
     try{
-        const updateGuide = await Guide.updateOne(
+        const updatecoach = await Coach.updateOne(
             { 
-                _id : req.params.guideId
+                _id : req.params.coachId
             },
             { 
                 $set : { 
@@ -113,7 +113,7 @@ export const updateGuide = async (req,res) => {
                 }  
             }
         );
-        res.json(updateGuide);
+        res.json(updatecoach);
     } catch (err){
         res.json({message : err})
     }
