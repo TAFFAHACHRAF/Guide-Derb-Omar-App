@@ -13,6 +13,8 @@ Clone the project
 
 **Server:** NodeJS, ExpressJS, Mongodb, JWT
 ## The project struct
+
+``` bash
 ├── Client
 │   ├── assets
 │   │   ├── css
@@ -440,4 +442,5 @@ Clone the project
     └── Videos
         ├── 1661974391611-Venice_5.mp4
         └── 1661974461304-Venice_5.mp4
+```
 
