@@ -12,7 +12,7 @@ Clone the project
 **Client:** React js , HTML , CSS , Bootstrap
 
 **Server:** NodeJS, ExpressJS, Mongodb, JWT
-## The project struct
+## The project structure
 
 ``` bash
 ├── Client
